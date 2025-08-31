@@ -1,333 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solidity X - Enhanced Solidity Transpiler</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Solidity X - Enhanced Solidity Transpiler</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #ffffff;
-        }
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+				line-height: 1.6;
+				color: #333;
+				background-color: #ffffff;
+			}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 20px;
+			}
 
-        header {
-            padding: 60px 0;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
+			header {
+				padding: 60px 0;
+				text-align: center;
+				border-bottom: 1px solid #eee;
+			}
 
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #2563eb;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
+			.logo {
+				font-size: 3.5rem;
+				font-weight: 700;
+				color: #2563eb;
+				margin-bottom: 20px;
+				letter-spacing: -0.02em;
+			}
 
-        .subtitle {
-            font-size: 1.25rem;
-            color: #666;
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+			.subtitle {
+				font-size: 1.25rem;
+				color: #666;
+				font-weight: 400;
+				max-width: 600px;
+				margin: 0 auto;
+			}
 
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-        }
+			.hero {
+				padding: 80px 0;
+				text-align: center;
+			}
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: #111;
-        }
+			.hero h1 {
+				font-size: 2.5rem;
+				margin-bottom: 20px;
+				font-weight: 600;
+				color: #111;
+			}
 
-        .hero p {
-            font-size: 1.1rem;
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
+			.hero p {
+				font-size: 1.1rem;
+				color: #555;
+				max-width: 700px;
+				margin: 0 auto 40px;
+			}
 
-        .cta-button {
-            display: inline-block;
-            background-color: #2563eb;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }
+			.cta-button {
+				display: inline-block;
+				background-color: #2563eb;
+				color: white;
+				padding: 12px 30px;
+				text-decoration: none;
+				border-radius: 6px;
+				font-weight: 500;
+				transition: background-color 0.2s;
+			}
 
-        .cta-button:hover {
-            background-color: #1d4ed8;
-        }
+			.cta-button:hover {
+				background-color: #1d4ed8;
+			}
 
-        .features {
-            padding: 80px 0;
-            background-color: #fafafa;
-        }
+			.features {
+				padding: 80px 0;
+				background-color: #fafafa;
+			}
 
-        .features h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 50px;
-            color: #111;
-        }
+			.features h2 {
+				text-align: center;
+				font-size: 2rem;
+				margin-bottom: 50px;
+				color: #111;
+			}
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 40px;
+				margin-top: 40px;
+			}
 
-        .feature {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+			.feature {
+				background: white;
+				padding: 30px;
+				border-radius: 8px;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+			}
 
-        .feature h3 {
-            font-size: 1.25rem;
-            margin-bottom: 15px;
-            color: #2563eb;
-        }
+			.feature h3 {
+				font-size: 1.25rem;
+				margin-bottom: 15px;
+				color: #2563eb;
+			}
 
-        .feature p {
-            color: #666;
-        }
+			.feature p {
+				color: #666;
+			}
 
-        .code-example {
-            padding: 80px 0;
-        }
+			.code-example {
+				padding: 80px 0;
+			}
 
-        .code-example h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: #111;
-        }
+			.code-example h2 {
+				text-align: center;
+				font-size: 2rem;
+				margin-bottom: 40px;
+				color: #111;
+			}
 
-        .code-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
-        }
+			.code-container {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 30px;
+				margin-top: 30px;
+			}
 
-        .code-block {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 6px;
-            padding: 20px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-        }
+			.code-block {
+				background-color: #f8f9fa;
+				border: 1px solid #e9ecef;
+				border-radius: 6px;
+				padding: 20px;
+				font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+				font-size: 0.9rem;
+				overflow-x: auto;
+			}
 
-        .code-block h4 {
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #666;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
+			.code-block h4 {
+				margin-bottom: 15px;
+				font-size: 0.9rem;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: #666;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			}
 
-        .getting-started {
-            padding: 80px 0;
-            background-color: #fafafa;
-        }
+			.getting-started {
+				padding: 80px 0;
+				background-color: #fafafa;
+			}
 
-        .getting-started h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: #111;
-        }
+			.getting-started h2 {
+				text-align: center;
+				font-size: 2rem;
+				margin-bottom: 40px;
+				color: #111;
+			}
 
-        .steps {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+			.steps {
+				max-width: 800px;
+				margin: 0 auto;
+			}
 
-        .step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+			.step {
+				display: flex;
+				align-items: flex-start;
+				margin-bottom: 30px;
+				background: white;
+				padding: 25px;
+				border-radius: 8px;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+			}
 
-        .step-number {
-            background-color: #2563eb;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
+			.step-number {
+				background-color: #2563eb;
+				color: white;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: bold;
+				margin-right: 20px;
+				flex-shrink: 0;
+			}
 
-        .step-content h3 {
-            margin-bottom: 8px;
-            color: #111;
-        }
+			.step-content h3 {
+				margin-bottom: 8px;
+				color: #111;
+			}
 
-        .step-content p {
-            color: #666;
-        }
+			.step-content p {
+				color: #666;
+			}
 
-        .step-content code {
-            background-color: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.9em;
-        }
+			.step-content code {
+				background-color: #f1f5f9;
+				padding: 2px 6px;
+				border-radius: 4px;
+				font-family: "Monaco", "Menlo", monospace;
+				font-size: 0.9em;
+			}
 
-        footer {
-            padding: 60px 0;
-            text-align: center;
-            border-top: 1px solid #eee;
-            color: #666;
-        }
+			footer {
+				padding: 60px 0;
+				text-align: center;
+				border-top: 1px solid #eee;
+				color: #666;
+			}
 
-        @media (max-width: 768px) {
-            .code-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .step {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .step-number {
-                margin-bottom: 15px;
-                margin-right: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">Solidity X</div>
-            <p class="subtitle">A powerful transpiler that extends Solidity with missing language features</p>
-        </div>
-    </header>
+			@media (max-width: 768px) {
+				.code-container {
+					grid-template-columns: 1fr;
+				}
 
-    <section class="hero">
-        <div class="container">
-            <h1>Write Better Smart Contracts</h1>
-            <p>Solidity X transpiles enhanced Solidity code with missing language features into standard Solidity, giving you modern programming constructs while maintaining full compatibility with the Ethereum ecosystem.</p>
-            <a href="#getting-started" class="cta-button">Get Started</a>
-        </div>
-    </section>
+				.logo {
+					font-size: 2.5rem;
+				}
 
-    <section class="features">
-        <div class="container">
-            <h2>Enhanced Features</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>Advanced Control Flow</h3>
-                    <p>Enhanced loop constructs, pattern matching, and conditional expressions that make your contract logic cleaner and more expressive.</p>
-                </div>
-                <div class="feature">
-                    <h3>Type System Extensions</h3>
-                    <p>Optional types, union types, and enhanced struct capabilities that help catch bugs at compile time and improve code reliability.</p>
-                </div>
-                <div class="feature">
-                    <h3>Modern Syntax</h3>
-                    <p>Destructuring assignments, arrow functions, and other modern programming language features adapted for smart contract development.</p>
-                </div>
-                <div class="feature">
-                    <h3>Standard Solidity Output</h3>
-                    <p>Transpiles to clean, optimized standard Solidity code that works with all existing tools, frameworks, and deployment pipelines.</p>
-                </div>
-                <div class="feature">
-                    <h3>Zero Runtime Overhead</h3>
-                    <p>All enhancements are compile-time features. The output is efficient Solidity code with no additional gas costs or dependencies.</p>
-                </div>
-                <div class="feature">
-                    <h3>Developer Experience</h3>
-                    <p>Better error messages, syntax highlighting support, and tooling integration for a smoother development workflow.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+				.hero h1 {
+					font-size: 2rem;
+				}
 
-    <section class="code-example">
-        <div class="container">
-            <h2>See the Difference</h2>
-            <div class="code-container">
-                <div class="code-block">
-                    <h4>Solidity X Input</h4>
-                    <pre><code>contract Token {
+				.step {
+					flex-direction: column;
+					align-items: center;
+					text-align: center;
+				}
+
+				.step-number {
+					margin-bottom: 15px;
+					margin-right: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<div class="logo">{ Solidity X }</div>
+				<p class="subtitle">A powerful transpiler that extends Solidity with missing language features</p>
+			</div>
+		</header>
+
+		<section class="hero">
+			<div class="container">
+				<h1>Write Better Smart Contracts</h1>
+				<p>
+					Solidity X transpiles enhanced Solidity code with missing language features into standard Solidity, giving you modern programming constructs while maintaining
+					full compatibility with the Ethereum ecosystem.
+				</p>
+				<a href="#getting-started" class="cta-button">Get Started</a>
+			</div>
+		</section>
+
+		<section class="features">
+			<div class="container">
+				<h2>Enhanced Features</h2>
+				<div class="features-grid">
+					<div class="feature">
+						<h3>Advanced Control Flow</h3>
+						<p>Enhanced loop constructs, pattern matching, and conditional expressions that make your contract logic cleaner and more expressive.</p>
+					</div>
+					<div class="feature">
+						<h3>Type System Extensions</h3>
+						<p>Optional types, union types, and enhanced struct capabilities that help catch bugs at compile time and improve code reliability.</p>
+					</div>
+					<div class="feature">
+						<h3>Modern Syntax</h3>
+						<p>Destructuring assignments, arrow functions, and other modern programming language features adapted for smart contract development.</p>
+					</div>
+					<div class="feature">
+						<h3>Standard Solidity Output</h3>
+						<p>Transpiles to clean, optimized standard Solidity code that works with all existing tools, frameworks, and deployment pipelines.</p>
+					</div>
+					<div class="feature">
+						<h3>Zero Runtime Overhead</h3>
+						<p>All enhancements are compile-time features. The output is efficient Solidity code with no additional gas costs or dependencies.</p>
+					</div>
+					<div class="feature">
+						<h3>Developer Experience</h3>
+						<p>Better error messages, syntax highlighting support, and tooling integration for a smoother development workflow.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="code-example">
+			<div class="container">
+				<h2>See the Difference</h2>
+				<div class="code-container">
+					<div class="code-block">
+						<h4>Solidity X Input</h4>
+						<pre><code>contract Token {
     mapping(address => uint256) balances;
     
-    function transfer(address to, uint256 amount) 
-        -> Result&lt;bool, string&gt; {
-        
-        let balance = balances[msg.sender];
-        
-        match balance {
-            when &gt;= amount =&gt; {
-                balances[msg.sender] -= amount;
-                balances[to] += amount;
-                Ok(true)
-            }
-            _ =&gt; Err("Insufficient balance")
+    function transfer(address to, uint256 amount) {
+        switch (to) {
+            case address(0):
+                // Do something
+                _transfer(sender, to, 0);
+            default:
+                _transfer(sender, to, amount);
         }
+
+        return true;
     }
-}</code></pre>
-                </div>
-                <div class="code-block">
-                    <h4>Standard Solidity Output</h4>
-                    <pre><code>contract Token {
+}
+    </code></pre>
+					</div>
+					<div class="code-block">
+						<h4>Standard Solidity Output</h4>
+						<pre><code>contract Token {
     mapping(address => uint256) balances;
     
     function transfer(address to, uint256 amount) 
         external returns (bool success, string memory error) {
         
         uint256 balance = balances[msg.sender];
-        
-        if (balance >= amount) {
+
+        if (to == address(0)) {
             balances[msg.sender] -= amount;
             balances[to] += amount;
             return (true, "");
@@ -336,53 +337,53 @@
         }
     }
 }</code></pre>
-                </div>
-            </div>
-        </div>
-    </section>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <section class="getting-started" id="getting-started">
-        <div class="container">
-            <h2>Getting Started</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Install Solidity X</h3>
-                        <p>Install the transpiler via npm or download the binary directly from our releases page.</p>
-                        <p><code>npm install -g solidity-x</code></p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Write Enhanced Solidity</h3>
-                        <p>Create your smart contracts using Solidity X's enhanced syntax and features in <code>.solx</code> files.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Transpile to Solidity</h3>
-                        <p>Run the transpiler to convert your enhanced code to standard Solidity.</p>
-                        <p><code>solx compile contracts/*.solx --output build/</code></p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Deploy as Usual</h3>
-                        <p>Use the generated Solidity files with Hardhat, Truffle, Remix, or any other Ethereum development framework.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+		<section class="getting-started" id="getting-started">
+			<div class="container">
+				<h2>Getting Started</h2>
+				<div class="steps">
+					<div class="step">
+						<div class="step-number">1</div>
+						<div class="step-content">
+							<h3>Install Solidity X</h3>
+							<p>Install the transpiler via npm or download the binary directly from our releases page.</p>
+							<p><code>npm install -g solidity-x</code></p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-number">2</div>
+						<div class="step-content">
+							<h3>Write Enhanced Solidity</h3>
+							<p>Create your smart contracts using Solidity X's enhanced syntax and features in <code>.solx</code> files.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-number">3</div>
+						<div class="step-content">
+							<h3>Transpile to Solidity</h3>
+							<p>Run the transpiler to convert your enhanced code to standard Solidity.</p>
+							<p><code>solx compile contracts/*.solx --output build/</code></p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-number">4</div>
+						<div class="step-content">
+							<h3>Deploy as Usual</h3>
+							<p>Use the generated Solidity files with Hardhat, Truffle, Remix, or any other Ethereum development framework.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Solidity X. Enhancing smart contract development one feature at a time.</p>
-        </div>
-    </footer>
-</body>
+		<footer>
+			<div class="container">
+				<p>&copy; 2025 Solidity X. Enhancing smart contract development one feature at a time.</p>
+			</div>
+		</footer>
+	</body>
 </html>
